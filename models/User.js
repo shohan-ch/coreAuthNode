@@ -1,0 +1,7 @@
+exports.user =  () =>{
+
+    return "user"
+
+
+
+}
