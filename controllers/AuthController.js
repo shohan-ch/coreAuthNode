@@ -8,14 +8,14 @@ exports.register = async (req, res) => {
   try {
     // Get form data
     let data = await formData(req);
+    let validationErrors = validate(data);
     const { name, email } = data;
 
-    res.end(validate(data));
-    // if (name == "") {
-    //   res.end(
-    //     JSON.stringify({ message: "Name should not be empty!", status: false })
-    //   );
-    // }
+    const print = () => {
+      return "Hello su";
+    };
+
+    res.end(validationErrors ? validationErrors : print());
   } catch (error) {
     console.log(error);
   }
