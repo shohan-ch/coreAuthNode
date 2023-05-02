@@ -6,17 +6,17 @@ exports.login = (res) => {
 
 exports.register = async (req, res) => {
   try {
+    // Get form data
     let data = await formData(req);
     const { name, email } = data;
-    res.end(validate({ name: "required" }));
+
+    res.end(validate(data));
     // if (name == "") {
     //   res.end(
     //     JSON.stringify({ message: "Name should not be empty!", status: false })
     //   );
     // }
-    console.log(name);
-    res.end("Register page");
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
