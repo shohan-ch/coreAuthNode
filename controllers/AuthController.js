@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
     // Get form data
     let data = await formData(req);
     let validationErrors = validate(data);
-    const { name, email } = data;
+    const { name, email, password, confirm_password } = data;
     if (validationErrors) {
       res.end(validationErrors);
     } else {
