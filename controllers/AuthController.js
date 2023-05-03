@@ -11,11 +11,7 @@ exports.register = async (req, res) => {
     let validationErrors = validate(data);
     const { name, email } = data;
 
-    const print = () => {
-      return "Hello su";
-    };
-
-    res.end(validationErrors ? validationErrors : print());
+    res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
     console.log(error);
   }
