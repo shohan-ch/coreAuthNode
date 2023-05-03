@@ -1,7 +1,16 @@
 const http = require("http");
 const { route } = require("./routes/route");
-const server = http.createServer(route);
+const { DbConnect } = require("./models/DbConnect");
 
-server.listen("3000", () => {
-  console.log("Server listen at 8000");
-});
+const startServer = async () => {
+  try {
+    await DbConnect();
+    http
+      .createServer(route)
+      .listen("3000", () => console.log("Server listen at port: 3000"));
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+startServer();

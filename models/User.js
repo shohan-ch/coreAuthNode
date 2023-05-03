@@ -1,7 +1,0 @@
-exports.user =  () =>{
-
-    return "user"
-
-
-
-}
