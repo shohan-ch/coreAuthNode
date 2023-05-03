@@ -10,8 +10,12 @@ exports.register = async (req, res) => {
     let data = await formData(req);
     let validationErrors = validate(data);
     const { name, email } = data;
-
-    res.end(validationErrors ? validationErrors : "Success");
+    if (validationErrors) {
+      res.end(validationErrors);
+    } else {
+      res.end("Success");
+    }
+    // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
     console.log(error);
   }
