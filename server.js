@@ -5,6 +5,7 @@ const { DbConnect } = require("./models/DbConnect");
 const startServer = async () => {
   try {
     await DbConnect();
+    // console.log(conn);
     http
       .createServer(route)
       .listen("3000", () => console.log("Server listen at port: 3000"));
