@@ -3,9 +3,9 @@ const database = "auth";
 
 exports.DbConnect = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/" + database);
-    console.log("Database are connected");
+    await mongoose.connect("mongodb://127.0.0.1:27017/" + database);
+    console.log("Database connected");
   } catch (error) {
-    console.log(error.message);
+    console.log("Error for connecting", error);
   }
 };
