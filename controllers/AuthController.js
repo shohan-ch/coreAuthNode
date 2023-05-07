@@ -3,7 +3,7 @@ const { validate } = require("../lib/validate");
 const User = require("../models/User");
 exports.login = async (res) => {
   try {
-    let users = User.findOne({}).then((res) => console.log(res.name));
+    let users = await User.findOne();
     res.end(JSON.stringify(users));
   } catch (error) {
     console.log(error);
