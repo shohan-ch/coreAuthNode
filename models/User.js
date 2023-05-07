@@ -12,6 +12,16 @@ const userSchema = new mongoose.Schema({
     unique: true,
     maxLength: 50,
   },
+  verifyCode: {
+    type: Number,
+    max: 4,
+    default: null,
+  },
+  is_verified: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   password: {
     type: String,
     required: true,

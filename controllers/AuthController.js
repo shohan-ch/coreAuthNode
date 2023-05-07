@@ -14,11 +14,15 @@ exports.register = async (req, res) => {
   try {
     // Get form data
     let data = await formData(req);
-    let validationErrors = validate(data);
+    let isValidationErrors = validate(data);
     const { name, email, password, confirm_password } = data;
-    if (validationErrors) {
-      res.end(validationErrors);
+    if (isValidationErrors) {
+      res.end(isValidationErrors);
     } else {
+      let user = await User.findOne({ email: email });
+      if (user) {
+        res.end(JSON.stringify("Email is already taken"));
+      }
       res.end("Success");
     }
     // res.end(validationErrors ? validationErrors : "Success");
