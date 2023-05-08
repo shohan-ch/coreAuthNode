@@ -1,7 +1,11 @@
+const { readFile, writeFile } = require("fs").promises;
 const { formData } = require("../lib/formData");
 const { validate } = require("../lib/validate");
 const sendMail = require("../mail/sendMail");
+const mailBody = require("../mail/template/mailBody");
 const User = require("../models/User");
+const fs = require("fs").promises;
+
 exports.login = async (res) => {
   try {
     let users = await User.findOne();
@@ -23,13 +27,23 @@ exports.register = async (req, res) => {
       let user = await User.findOne({ email: email });
       if (user) {
         res.end(JSON.stringify("Email is already taken"));
-      } else {
-        let verifiyCode = Math.floor(1000 + Math.random() * 9000);
-        console.log(verifiyCode);
-        sendMail();
-
-        res.end("Success");
       }
+      let verifiyCode = Math.floor(1000 + Math.random() * 9000);
+      console.log(verifiyCode);
+
+      // Write or create file
+      let html = mailBody(verifiyCode);
+      let fileCreate = writeFile("./mail/template/registrationMail.html", html);
+
+      // Read a html file
+      let file = await readFile(
+        "./mail/template/registrationMail.html",
+        "utf8"
+      );
+
+      // sendMail();
+
+      res.end(file);
     }
     // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
