@@ -1,5 +1,6 @@
 const { formData } = require("../lib/formData");
 const { validate } = require("../lib/validate");
+const sendMail = require("../mail/sendMail");
 const User = require("../models/User");
 exports.login = async (res) => {
   try {
@@ -25,6 +26,7 @@ exports.register = async (req, res) => {
       } else {
         let verifiyCode = Math.floor(1000 + Math.random() * 9000);
         console.log(verifiyCode);
+        sendMail();
 
         res.end("Success");
       }
