@@ -22,11 +22,15 @@ exports.register = async (req, res) => {
       let user = await User.findOne({ email: email });
       if (user) {
         res.end(JSON.stringify("Email is already taken"));
+      } else {
+        let verifiyCode = Math.floor(1000 + Math.random() * 9000);
+        console.log(verifiyCode);
+
+        res.end("Success");
       }
-      res.end("Success");
     }
     // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
-    console.log(error);
+    console.error(error.message);
   }
 };

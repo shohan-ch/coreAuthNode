@@ -5,7 +5,7 @@ exports.route = (req, res) => {
   if (req.url == "/login") {
     AuthController.login(res);
   }
-  if (req.url == "/register") {
+  if (req.url == "/register" && req.method == "POST") {
     AuthController.register(req, res);
   }
 };
