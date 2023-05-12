@@ -42,7 +42,6 @@ exports.register = async (req, res) => {
       );
 
       // sendMail();
-
       res.end(file);
     }
     // res.end(validationErrors ? validationErrors : "Success");
