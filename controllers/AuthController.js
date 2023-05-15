@@ -5,6 +5,7 @@ const sendMail = require("../mail/sendMail");
 const mailBody = require("../mail/template/mailBody");
 const User = require("../models/User");
 const fs = require("fs").promises;
+const bcrypt = require("bcrypt");
 
 exports.login = async (res) => {
   try {
@@ -34,15 +35,29 @@ exports.register = async (req, res) => {
       // Write or create file
       let html = mailBody(verifiyCode);
       let fileCreate = writeFile("./mail/template/registrationMail.html", html);
-
       // Read a html file
       let fileData = await readFile(
         "./mail/template/registrationMail.html",
         "utf8"
       );
-
+      // Mail send to user
       sendMail(fileData, email);
-      // res.end(file);
+
+      // Hash password
+
+      let hashPassword = await bcrypt.hash(password, 10);
+      // res.end(hashPassword);
+
+      // User created
+      let userCreate = await User.create({
+        name,
+        email,
+        verifiyCode,
+        is_verified: false,
+        password: hashPassword,
+      });
+
+      res.end(userCreate);
     }
     // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
