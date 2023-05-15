@@ -36,13 +36,13 @@ exports.register = async (req, res) => {
       let fileCreate = writeFile("./mail/template/registrationMail.html", html);
 
       // Read a html file
-      let file = await readFile(
+      let fileData = await readFile(
         "./mail/template/registrationMail.html",
         "utf8"
       );
 
-      // sendMail();
-      res.end(file);
+      sendMail(fileData, email);
+      // res.end(file);
     }
     // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {

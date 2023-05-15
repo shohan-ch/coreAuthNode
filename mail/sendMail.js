@@ -1,5 +1,5 @@
 const nodeMailer = require("nodemailer");
-module.exports = async () => {
+module.exports = async (mailHtml, mailAddress) => {
   let mailCredentials = {
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
@@ -10,10 +10,10 @@ module.exports = async () => {
   };
   let mailBody = {
     from: "admin@admin.com",
-    to: "shohan@shoan.com",
+    to: mailAddress,
     subject: "Email verify code",
     text: "Email verification code",
-    html: "<b>Code is 7854</b>",
+    html: mailHtml,
   };
 
   let transporter = nodeMailer.createTransport(mailCredentials);
