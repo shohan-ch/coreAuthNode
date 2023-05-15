@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     maxLength: 50,
   },
-  verifyCode: {
+  verify_code: {
     type: Number,
     max: 4,
     default: null,
