@@ -46,21 +46,20 @@ exports.register = async (req, res) => {
       // Hash password
 
       let hashPassword = await bcrypt.hash(password, 10);
-      // res.end(hashPassword);
 
       // User created
       let userCreate = await User.create({
         name,
         email,
-        verifiyCode,
+        verify_code: verifiyCode,
         is_verified: false,
         password: hashPassword,
       });
 
-      res.end(userCreate);
+      res.end("User created");
     }
     // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
-    console.error(error.message);
+    console.error("Error is:", error.message);
   }
 };
