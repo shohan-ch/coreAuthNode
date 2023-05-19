@@ -68,3 +68,7 @@ exports.register = async (req, res) => {
     console.error("Error is:", error.message);
   }
 };
+
+exports.verify = async (req, res) => {
+  res.end("Verify Message");
+};
