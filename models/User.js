@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema(
     },
     verify_code: {
       type: Number,
-      // max: 10,
+      max: 9999,
+      required: true,
       // default: null,
     },
     is_verified: {

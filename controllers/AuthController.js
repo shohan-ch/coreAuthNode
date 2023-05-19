@@ -53,7 +53,7 @@ exports.register = async (req, res) => {
         email,
         verify_code: verifiyCode,
         is_verified: false,
-        password: hashPassword,
+        // password: hashPassword,
       });
 
       res.end("User created");
