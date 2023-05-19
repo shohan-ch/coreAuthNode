@@ -42,9 +42,7 @@ exports.register = async (req, res) => {
       );
       // Mail send to user
       sendMail(fileData, email);
-
       // Hash password
-
       let hashPassword = await bcrypt.hash(password, 10);
 
       // User created
@@ -53,10 +51,17 @@ exports.register = async (req, res) => {
         email,
         verify_code: verifiyCode,
         is_verified: false,
-        // password: hashPassword,
+        password: hashPassword,
       });
 
-      res.end("User created");
+      if (userCreate) {
+        res.end(
+          JSON.stringify({
+            message:
+              "You have successfully created account, please check email to verify!",
+          })
+        );
+      }
     }
     // res.end(validationErrors ? validationErrors : "Success");
   } catch (error) {
