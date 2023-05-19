@@ -80,23 +80,28 @@ exports.verify = async (req, res) => {
       let user = await User.findOne({
         email: email,
       });
-      if (!user) {
-        res.end("User is not found.");
-      }
-      if (user.is_verified == true) {
-        res.end("You already verified.");
-      }
-      if (user.verify_code != verify_code) {
-        res.end("Verify code doesn't match");
-      } else {
-        user.verify_code = null;
-        user.is_verified = true;
-        user.save();
-        res.end(
-          JSON.stringify({
-            message: "You have successfully verify your account.",
-          })
-        );
+
+      switch (true) {
+        case !user:
+          res.end("User is not found.");
+          break;
+        case user.is_verified:
+          res.end("You already verified.");
+          break;
+
+        case user.verify_code != verify_code:
+          res.end("Verify code doesn't match");
+          break;
+
+        default:
+          user.verify_code = null;
+          user.is_verified = true;
+          user.save();
+          res.end(
+            JSON.stringify({
+              message: "You have successfully verify your account.",
+            })
+          );
       }
     }
   } catch (error) {
