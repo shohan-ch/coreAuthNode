@@ -70,5 +70,36 @@ exports.register = async (req, res) => {
 };
 
 exports.verify = async (req, res) => {
-  res.end("Verify Message");
+  try {
+    let data = await formData(req);
+    let isValidationErrors = validate(data);
+    const { email, verify_code } = data;
+    if (isValidationErrors) {
+      res.end(isValidationErrors);
+    } else {
+      let user = await User.findOne({
+        email: email,
+      });
+      if (!user) {
+        res.end("User is not found.");
+      }
+      if (user.is_verified == true) {
+        res.end("You already verified.");
+      }
+      if (user.verify_code != verify_code) {
+        res.end("Verify code doesn't match");
+      } else {
+        user.verify_code = null;
+        user.is_verified = true;
+        user.save();
+        res.end(
+          JSON.stringify({
+            message: "You have successfully verify your account.",
+          })
+        );
+      }
+    }
+  } catch (error) {
+    console.log("Verify Error is ", error.message);
+  }
 };
