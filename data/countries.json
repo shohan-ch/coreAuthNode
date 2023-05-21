@@ -1,0 +1,52 @@
+[
+{
+"name": "Albania",
+"iso2": "AL132",
+"iso3": "ALB889"
+},
+{
+"name": "Algeria",
+"iso2": "DZ",
+"iso3": "DZA"
+},
+{
+"name": "American Samoa",
+"iso2": "AS",
+"iso3": "ASM"
+},
+{
+"name": "Andorra",
+"iso2": "AD",
+"iso3": "AND"
+},
+{
+"name": "Angola",
+"iso2": "AO",
+"iso3": "AGO"
+},
+{
+"name": "Anguilla",
+"iso2": "AI",
+"iso3": "AIA"
+},
+{
+"name": "Antarctica",
+"iso2": "AQ",
+"iso3": "ATA"
+},
+{
+"name": "Antigua and Barbuda",
+"iso2": "AG",
+"iso3": "ATG"
+},
+{
+"name": "Argentina",
+"iso2": "AR",
+"iso3": "ARG"
+},
+{
+"name": "Armenia",
+"iso2": "AM",
+"iso3": "ARM"
+}
+]

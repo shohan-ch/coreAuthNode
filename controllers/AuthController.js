@@ -5,11 +5,13 @@ const sendMail = require("../mail/sendMail");
 const mailBody = require("../mail/template/mailBody");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const countries = require("../data/countries.json");
 
 exports.getCountryByname = async (req, res) => {
   try {
     let { country } = await formData(req);
-    console.log(country);
+    let singleCountry = countries.filter((item) => country == item.name);
+    res.end(JSON.stringify(singleCountry));
   } catch (error) {
     console.log("country error is", error);
   }
