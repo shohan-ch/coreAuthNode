@@ -7,12 +7,27 @@ const User = require("../models/User");
 const fs = require("fs").promises;
 const bcrypt = require("bcrypt");
 
-exports.login = async (res) => {
+exports.login = async (req, res) => {
   try {
-    let users = await User.findOne();
-    res.end(JSON.stringify(users));
+    let data = await formData(req);
+
+    let isValidationErrors = validate(data);
+    const { email, password } = data;
+    if (isValidationErrors) {
+      res.end(isValidationErrors);
+    } else {
+      let user = await User.findOne({ email: email });
+      console.log("User is", user);
+      if (!user) {
+        res.end("User not found");
+      }
+      let passEncrypt = await bcrypt.compare(password, user.password);
+      console.log(passEncrypt);
+      res.end("Login");
+    }
   } catch (error) {
-    console.log(error);
+    console.log("Login error is:", error);
+    res.end(JSON.stringify({ error: error.message }));
   }
 };
 
