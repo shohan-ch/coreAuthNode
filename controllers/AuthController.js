@@ -17,13 +17,19 @@ exports.login = async (req, res) => {
       res.end(isValidationErrors);
     } else {
       let user = await User.findOne({ email: email });
-      console.log("User is", user);
-      if (!user) {
-        res.end("User not found");
+      let passwordEncrypt = await bcrypt.compare(password, user.password);
+
+      switch (true) {
+        case !user:
+          res.end("User not found");
+          break;
+        case !passwordEncrypt:
+          res.end("Password doesn't match");
+          break;
+        default:
+          res.end("You have login successfully.");
+          break;
       }
-      let passEncrypt = await bcrypt.compare(password, user.password);
-      console.log(passEncrypt);
-      res.end("Login");
     }
   } catch (error) {
     console.log("Login error is:", error);
