@@ -11,4 +11,7 @@ exports.route = (req, res) => {
   if (req.url == "/verify" && req.method == "POST") {
     AuthController.verify(req, res);
   }
+  if (req.url == "/country" && req.method == "POST") {
+    AuthController.getCountryByname(req, res);
+  }
 };

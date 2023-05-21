@@ -4,8 +4,16 @@ const { validate } = require("../lib/validate");
 const sendMail = require("../mail/sendMail");
 const mailBody = require("../mail/template/mailBody");
 const User = require("../models/User");
-const fs = require("fs").promises;
 const bcrypt = require("bcrypt");
+
+exports.getCountryByname = async (req, res) => {
+  try {
+    let { country } = await formData(req);
+    console.log(country);
+  } catch (error) {
+    console.log("country error is", error);
+  }
+};
 
 exports.login = async (req, res) => {
   try {
