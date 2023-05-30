@@ -13,14 +13,13 @@ exports.getCountryByname = async (req, res) => {
     let singleCountry = countries.filter((item) => country == item.name);
     res.end(JSON.stringify(singleCountry));
   } catch (error) {
-    console.log("country error is", error);
+    console.log("country error:", error);
   }
 };
 
 exports.login = async (req, res) => {
   try {
     let data = await formData(req);
-
     let isValidationErrors = validate(data);
     const { email, password } = data;
     if (isValidationErrors) {
