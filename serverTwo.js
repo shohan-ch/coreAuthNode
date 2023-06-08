@@ -12,7 +12,7 @@ const option = {
 const server = createServer(option, async (req, res) => {
   try {
     let response = await axios.get(
-      "https://jsonplaceholder.typicode.comss/posts/1"
+      "https://jsonplaceholder.typicode.com/posts/1"
     );
     res.writeHead(200);
     res.end(JSON.stringify(response.data));
