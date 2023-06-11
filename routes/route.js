@@ -1,4 +1,5 @@
 const AuthController = require("../controllers/AuthController");
+const PathController = require("../controllers/PathController");
 
 exports.route = (req, res) => {
   // Auth Route
@@ -13,5 +14,8 @@ exports.route = (req, res) => {
   }
   if (req.url == "/country" && req.method == "POST") {
     AuthController.getCountryByname(req, res);
+  }
+  if (req.url == "/path" && req.method == "GET") {
+    PathController.getPath(res);
   }
 };

@@ -7,7 +7,7 @@ const startServer = async () => {
     await DbConnect();
     http
       .createServer(route)
-      .listen("3000", () => console.log("Server listen at port: 3000"));
+      .listen(3000, () => console.log("Server listen at port: 3000"));
   } catch (error) {
     console.log(error.message);
   }
