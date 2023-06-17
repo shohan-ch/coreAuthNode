@@ -1,4 +1,5 @@
 const AuthController = require("../controllers/AuthController");
+const FileController = require("../controllers/FileController");
 const PathController = require("../controllers/PathController");
 
 exports.route = (req, res) => {
@@ -17,5 +18,8 @@ exports.route = (req, res) => {
   }
   if (req.url == "/path" && req.method == "GET") {
     PathController.getPath(res);
+  }
+  if (req.url == "/file" && req.method == "GET") {
+    FileController.creteFolder(res);
   }
 };

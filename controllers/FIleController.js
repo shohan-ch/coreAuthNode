@@ -1,4 +1,4 @@
 const fs = require("fs");
-exports.creteFolder = (re, res) => {
+exports.creteFolder = (res) => {
   res.end("File controller");
 };
