@@ -1,5 +1,6 @@
 const path = require("path");
 
 exports.getPath = (res) => {
-  res.end("Path directory");
+  console.log(__dirname);
+  res.end(__filename);
 };
