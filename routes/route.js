@@ -1,6 +1,7 @@
 const AuthController = require("../controllers/AuthController");
 const FileController = require("../controllers/FileController");
 const PathController = require("../controllers/PathController");
+const EventController = require("../controllers/EventController");
 
 exports.route = (req, res) => {
   // Auth Route
@@ -21,5 +22,8 @@ exports.route = (req, res) => {
   }
   if (req.url == "/file" && req.method == "GET") {
     FileController.creteFolder(res);
+  }
+  if (req.url == "/event" && req.method == "GET") {
+    EventController.nameEvent(res);
   }
 };
