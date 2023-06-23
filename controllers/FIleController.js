@@ -1,6 +1,23 @@
 const { mkdir } = require("fs/promises");
 const fs = require("fs");
 
+exports.creteFile = async (res) => {
+  try {
+    $checkFile = fs.existsSync("./controllers/new/name.txt");
+    if (!$checkFile) {
+      let file = await fs.promises.writeFile(
+        "./controllers/new/name.txt",
+        "My name is Shohan"
+      );
+      res.end("File created");
+    } else {
+      res.end("File Exist");
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.deleteFile = (res) => {
   // Delete File within given path
   fs.unlink("controllers/new/name.txt", (err) => {
