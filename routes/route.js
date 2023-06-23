@@ -20,8 +20,11 @@ exports.route = (req, res) => {
   if (req.url == "/path" && req.method == "GET") {
     PathController.getPath(res);
   }
-  if (req.url == "/file" && req.method == "GET") {
+  if (req.url == "/createFolder" && req.method == "GET") {
     FileController.creteFolder(res);
+  }
+  if (req.url == "/creteFile" && req.method == "GET") {
+    FileController.creteFile(res);
   }
   if (req.url == "/deleteFile" && req.method == "GET") {
     FileController.deleteFile(res);
