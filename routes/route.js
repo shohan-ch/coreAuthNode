@@ -23,6 +23,9 @@ exports.route = (req, res) => {
   if (req.url == "/file" && req.method == "GET") {
     FileController.creteFolder(res);
   }
+  if (req.url == "/deleteFile" && req.method == "GET") {
+    FileController.deleteFile(res);
+  }
   if (req.url == "/event" && req.method == "GET") {
     EventController.nameEvent(res);
   }
