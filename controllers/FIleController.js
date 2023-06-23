@@ -3,7 +3,7 @@ const fs = require("fs");
 
 exports.deleteFile = (res) => {
   // let url = new URL("./new/name.txt");
-  fs.unlink("./new/name.txt", (err) => {
+  fs.unlink("controllers/new/name.txt", (err) => {
     if (err) {
       console.log(err);
     } else {
