@@ -2,10 +2,10 @@ const { mkdir } = require("fs/promises");
 const fs = require("fs");
 
 exports.deleteFile = (res) => {
-  // let url = new URL("./new/name.txt");
+  // Delete File within given path
   fs.unlink("controllers/new/name.txt", (err) => {
     if (err) {
-      console.log(err);
+      console.log(err.message);
     } else {
       res.end("File deleted");
     }
