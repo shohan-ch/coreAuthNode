@@ -3,8 +3,8 @@ const fs = require("fs");
 
 exports.creteFile = async (res) => {
   try {
-    $checkFile = fs.existsSync("./controllers/new/name.txt");
-    if (!$checkFile) {
+    let checkFile = fs.existsSync("./controllers/new/name.txt");
+    if (!checkFile) {
       let file = await fs.promises.writeFile(
         "./controllers/new/name.txt",
         "My name is Shohan"
